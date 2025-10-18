@@ -664,11 +664,7 @@
 </head>
 
 <body>
-    <audio id="myMusic" loop>
-        <source src="nhac.mp3" type="audio/mpeg">
-        Trình duyệt của bạn không hỗ trợ phát nhạc.
-    </audio>
-
+    <audio id="nhacNen" src="audio/nhac.mp3" loop></audio>
     <svg style="display: none;" id="theSvg" viewBox="-120 -30 240 180" enable-background="new 0 0 174 148"
         xml:space="preserve">
         <defs>
@@ -1247,12 +1243,26 @@
         });
 
     </script>
-   
+   <script>
+  // Lắng nghe sự kiện click chuột trên toàn bộ trang
+  document.body.addEventListener('click', function() {
+
+    // Lấy phần tử audio
+    var myAudio = document.getElementById('nhacNen');
+
+    // Kiểm tra xem nhạc đã chạy chưa, nếu chưa thì phát
+    if (myAudio.paused) {
+      myAudio.play();
+    }
+
+  }, { once: true }); // { once: true } đảm bảo code này chỉ chạy 1 LẦN DUY NHẤT
+</script>
 
 </body>
 
 
 </html>
+
 
 
 
