@@ -664,6 +664,7 @@
 </head>
 
 <body>
+    <audio id="bg" src="./audio/nhac.mp3" preload="auto" loop playsinline></audio>
 
     <svg style="display: none;" id="theSvg" viewBox="-120 -30 240 180" enable-background="new 0 0 174 148"
         xml:space="preserve">
@@ -1243,7 +1244,18 @@
         });
 
     </script>
+    <script>
+  const bg = document.getElementById('bg');
+  bg.play().catch(() => {
+    // nếu autoplay bị chặn -> phát khi người dùng tương tác lần đầu
+    const once = () => { bg.play().catch(()=>{}); window.removeEventListener('click', once); window.removeEventListener('touchstart', once); };
+    window.addEventListener('click', once, {passive:true});
+    window.addEventListener('touchstart', once, {passive:true});
+  });
+</script>
+
 </body>
 
 
 </html>
+
